@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: mdsdproxyhelper
+spec:
+  selector:
+    app: mdsdproxyhelper
+  ports:
+    - port: 443
+      targetPort: 8443

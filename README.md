@@ -1,1 +1,2 @@
 # azure-mdsd-proxy-helper
+Work around for the Http Proxy limitation on: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-prometheus-metrics-addon?tabs=azure-portal#limitations

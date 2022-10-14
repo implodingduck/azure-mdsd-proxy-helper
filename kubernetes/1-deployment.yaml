@@ -1,0 +1,28 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: mdsdproxyhelper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mdsdproxyhelper
+  template:
+    metadata:
+      labels:
+        app: mdsdproxyhelper
+    spec:
+      containers:
+        - name: mdsdproxyhelper
+          image: ghcr.io/implodingduck/azure-mdsd-proxy-helper:v0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8443
+          volumeMounts:
+            - name: cert
+              mountPath: /ssl
+              readOnly: true
+      volumes:
+        - name: cert
+          secret:
+            secretName: mdsdproxyhelper-certs
