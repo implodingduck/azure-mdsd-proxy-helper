@@ -90,7 +90,8 @@ func handleMutate(w http.ResponseWriter, r *http.Request) {
 				if envVar.Name == "HTTPS_PROXY" || envVar.Name == "https_proxy" {
 					envjson, _ := json.Marshal(envVar)
 					klog.Info(string(envjson[:]))
-					newHttpsProxy := envVar.Value[:len(envVar.Value-1)]
+					envValStr := string(envVar.Value)
+					newHttpsProxy := envValStr[:len(envValStr)-1]
 					updateEnvVariable(&pod, i, x, newHttpsProxy)
 
 				}
