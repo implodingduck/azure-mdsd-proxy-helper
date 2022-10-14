@@ -4,6 +4,7 @@ metadata:
   name: mdsdproxyhelper
   labels:
     app: mdsdproxyhelper
+    admissions.enforcer/disabled: "true"
 webhooks:
 - admissionReviewVersions: ["v1"]
   name: mdsdproxyhelper.azmk8s.io
