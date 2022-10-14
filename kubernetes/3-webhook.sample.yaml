@@ -19,5 +19,12 @@ webhooks:
       apiGroups: [""]
       apiVersions: ["v1"]
       resources: ["pods"]
+  namespaceSelector:
+    matchExpressions:
+    - key: kubernetes.io/metadata.name
+      operator: In
+      values:
+        - "kube-system"
+        - "default"
   sideEffects: None
   failurePolicy: Ignore
