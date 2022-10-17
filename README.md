@@ -1,2 +1,5 @@
 # azure-mdsd-proxy-helper
 Work around for the Http Proxy limitation on: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-prometheus-metrics-addon?tabs=azure-portal#limitations
+
+## Work around info
+The prometheus metrics pods depend on the `mdsd` process. During startup `mdsd` will configure its proxy with the `https_proxy` environment variable and it expects the format to be `http(s)://<hostname>:<port>` which has no trailing slash... however it seems that the creation of the AKS cluster requires the proxy format to be `http(s)://<hostname>:<port>/` which has the trailing slash. This helper creates a [MutatingWebhookConfiguration](https://kubernetes.io/docs/reference/kubernetes-api/extend-resources/mutating-webhook-configuration-v1/) to remove the trailing slash from the prometheus metrics pods environment variables. 
